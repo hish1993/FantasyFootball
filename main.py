@@ -7,7 +7,7 @@ no_positions = 11
 iterations = 0
 best_team_score = 0
 
-#list of 18 players from fantasy football, each player has a name, position, expected points and price #####################
+#list of 18 players from fantasy football, each player has a name, position, expected points and price 
 playerList = np.array([
 ["De Bruyne", "m", 250, 11.5], ["B.Fernandes", "m", 210, 10.5], ["Werner", "f", 200, 9.5],
     ["Jimenez", "f", 190, 8.5], ["Ings", "f", 195, 8.5], ["Martial", "f", 200, 9], ["Sterling", "m", 230, 11.5],
@@ -17,7 +17,7 @@ playerList = np.array([
 ])
 ############################################################################################################################
 
-#rearranges playerList to be in descending order of value (expected points/price)###########################################
+#rearranges playerList to be in descending order of value (expected points/price)
 key_values = playerList[:,2].astype(int) / playerList[:,3].astype(float)
 index_array = np.argsort(key_values)[::-1]
 
@@ -29,12 +29,12 @@ for x in range (0, len(index_array)):
 playerList = sortedPlayerList
 #############################################################################################################################
 
-#calculates and prints number of possible team combos to give an idea how long the program will run for######################
+#calculates and prints number of possible team combos to give an idea how long the program will run for
 combinations = comb(len(playerList), no_positions)
 print(combinations)
 #############################################################################################################################
 
-#generates each 11 player team combo #######################################################################################
+#generates each 11 player team combo 
 for x in range(no_positions, no_positions+1):
     for subset in itertools.combinations(playerList,x):
 
