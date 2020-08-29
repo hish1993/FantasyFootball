@@ -7,6 +7,7 @@ no_positions = 11
 iterations = 0
 best_team_score = 0
 
+#list of 18 players from fantasy football, each player has a name, position, expected points and price #####################
 playerList = np.array([
 ["De Bruyne", "m", 250, 11.5], ["B.Fernandes", "m", 210, 10.5], ["Werner", "f", 200, 9.5],
     ["Jimenez", "f", 190, 8.5], ["Ings", "f", 195, 8.5], ["Martial", "f", 200, 9], ["Sterling", "m", 230, 11.5],
@@ -14,9 +15,10 @@ playerList = np.array([
     ["Alexander-Arnold", "d", 210, 7.5], ["Van Dijk", "d", 180, 6.5], ["Robertson", "d", 190, 7],
     ["Doherty", "d", 180, 6], ["Tarkowski", "d", 140, 5.5], ["Pope", "g", 170, 5.5], ["Ryan", "g", 150, 4.5],
 ])
+############################################################################################################################
 
+#rearranges playerList to be in descending order of value (expected points/price)###########################################
 key_values = playerList[:,2].astype(int) / playerList[:,3].astype(float)
-
 index_array = np.argsort(key_values)[::-1]
 
 sortedPlayerList = []
@@ -25,19 +27,22 @@ for x in range (0, len(index_array)):
     sortedPlayerList.append(playerList[index_array[x]])
 
 playerList = sortedPlayerList
+#############################################################################################################################
 
+#calculates and prints number of possible team combos to give an idea how long the program will run for######################
 combinations = comb(len(playerList), no_positions)
 print(combinations)
+#############################################################################################################################
 
-
+#generates each 11 player team combo #######################################################################################
 for x in range(no_positions, no_positions+1):
     for subset in itertools.combinations(playerList,x):
 
-        iterations = iterations + 1
+        iterations = iterations + 1 #tracks number of teams generated (for the purpose of program progress stats)
 
         captain_points = 0
         captain = ""
-        money = 96
+        money = 96 
         score = 0
         f = 0
         m = 0
